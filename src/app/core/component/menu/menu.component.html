@@ -1,0 +1,151 @@
+<div class="wrapper">
+  <aside id="sidebar" [ngClass]="{ expand: isExpanded }">
+    <div class="d-flex">
+      <button class="toggle-btn" type="button" (click)="toggleSidebarr()">
+        <!-- <i class="lni lni-grid-alt"></i> -->
+        <img src="./assets/img/logo.svg" alt="" />
+      </button>
+      <div class="sidebar-logo">
+        <a [routerLink]="['../menu']" [relativeTo]="route">Inventory Wizard</a>
+      </div>
+    </div>
+    <ul class="sidebar-nav">
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./shelf']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/shelf.svg" alt="Shelf" />
+          <span>{{ "shelves" | translate }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./category']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img
+            style="width: 22px; height: 22px"
+            src="./assets/img/category.svg"
+            alt="Category"
+          />
+          <span>{{ "categories" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./product']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/product.svg" alt="Products" />
+          <span>{{ "products" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./product-sale']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/saleProduct.svg" alt="Sale Product" />
+          <span>{{ "productSale" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./order']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/order.svg" alt="Order" />
+          <span>{{ "orders" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./customer']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/customer.svg" alt="Customers" />
+          <span>{{ "customers" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./supplier']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/supplier.svg" alt="Supplier" />
+          <span>{{ "suppliers" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./employee']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/employee.svg" alt="Employee" />
+          <span>{{ "employees" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./report']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/report.svg" alt="Report" />
+          <span>{{ "reports" | translate }}</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a
+          class="sidebar-link"
+          [routerLink]="['./invoice']"
+          [relativeTo]="route"
+          [routerLinkActive]="'active'"
+        >
+          <img src="./assets/img/sidebarInvoice.svg" alt="ınvoice" />
+          <span>{{ "invoices" | translate }}</span>
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer" (click)="logout()">
+      <a class="sidebar-link">
+        <img src="./assets/img/settings.svg" alt="Settings" />
+        <span>Ayarlar</span>
+      </a>
+      <a class="sidebar-link">
+        <img src="./assets/img/logout.svg" alt="Logout" />
+        <span>{{ "signOut" | translate }}</span>
+      </a>
+    </div>
+  </aside>
+
+  <div style="background: #fbfaff" class="main">
+    <router-outlet />
+  </div>
+</div>

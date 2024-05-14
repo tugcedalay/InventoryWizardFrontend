@@ -1,0 +1,123 @@
+<div style="background: #f8faff">
+  <div class="pe-4 ps-4 py-4">
+    <div class="table-responsive tbodyDiv">
+      <p style="font-weight: bold">{{ tableTitle | translate }}</p>
+      <table style="background: #fff" class="table table-sm table-hover">
+        <thead>
+          <tr class="align-middle">
+            <th scope="col" style="width: 10px"></th>
+            @for (column of columns; track $index) {
+            <th scope="col">
+              {{ column.label | translate }}
+            </th>
+            } @if (showOrderDetailButton) {
+            <th scope="col" style="width: 120px">
+              {{ "orderTableOrderDetails" | translate }}
+            </th>
+            } @if (showInvoiceDetailButton) {
+            <th scope="col" style="width: 120px">
+              {{ "invoiceTableInvoiceDetails" | translate }}
+            </th>
+            } @if (showCreateInvoiceButton) {
+            <th scope="col" style="width: 10px"></th>
+            }
+            <th scope="col" style="width: 10px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of tableData; track item; let i = $index) {
+          <tr>
+            <td scope="row">
+              <button
+                (click)="navigateUpdateDialog(item)"
+                class="btn btn primary img-button"
+              >
+                <img
+                  [title]="'updateButtonTitle' | translate"
+                  src="../../../../assets/img/editTest.svg"
+                  alt=""
+                />
+              </button>
+            </td>
+            @for (column of columns; track $index) {
+            <td
+              [style.background]="
+                isCritical(item, column.field) ? 'red' : 'inherit'
+              "
+            >
+              {{ item[column.field] }}
+            </td>
+            } @if (showOrderDetailButton) {
+            <td scope="row">
+              <button (click)="navigateOrderDetails(item.id)">
+                <img
+                  [title]="'orderDetailsButtonTitle' | translate"
+                  src="/assets/img/view.svg"
+                  alt=""
+                />
+              </button>
+            </td>
+            } @if (showCreateInvoiceButton) {
+            <td scope="row">
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#invoiceModal"
+                (click)="navigateCreateInvoice(item)"
+              >
+                <img
+                  [title]="'createInvioceButtonTitle' | translate"
+                  src="/assets/img/invoice.svg"
+                  alt=""
+                />
+              </button>
+            </td>
+            } @if (showInvoiceDetailButton) {
+            <td scope="row">
+              <button (click)="navigateInvoiceDetails(item.id)">
+                <img src="/assets/img/invoice.svg" alt="" />
+              </button>
+            </td>
+            }
+            <td scope="row">
+              <button
+                [title]="'deleteButtonTitle' | translate"
+                class="btn btn primary img-button"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+                (click)="navigateDeleteDialog(item)"
+              >
+                <img src="../../../../assets/img/deleteTest.svg" />
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Sayfalama -->
+  <div class="pagination-container">
+    <ul class="pagination">
+      <li [ngClass]="{ disabled: currentPage === 1 }">
+        <a
+          (click)="onPageChange(currentPage - 1)"
+          tabindex="-1"
+          aria-disabled="true"
+          ><img src="../../../../assets/img/nextArrow.svg" alt=""
+        /></a>
+      </li>
+      <li
+        *ngFor="let page of totalPagesArray()"
+        [class.active]="currentPage === page"
+      >
+        <a (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+      <li [ngClass]="{ disabled: currentPage === totalPages }">
+        <a (click)="onPageChange(currentPage + 1)">
+          <img src="../../../../assets/img/backArrow.svg" alt="" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

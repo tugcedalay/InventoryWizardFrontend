@@ -1,0 +1,25 @@
+<app-navbar
+  [showAcceptProductButton]="true"
+  (refreshEvent)="ngOnInit()"
+  (navigateCreateDialogEvent)="openCreateShelfDialog()"
+  (navigateAcceptProductEvent)="openAcceptProductDialog($event)"
+  (generatePdfEvent)="generatePDF()"
+  (onSearchInputChangeEvent)="onSearchInputChange($event)"
+></app-navbar>
+
+<!-- TABLE MODAL -->
+<app-table
+  [totalPages]="totalPages"
+  [tableTitle]="tableTitle"
+  [tableData]="tableData"
+  [columns]="columns"
+  (navigateUpdateDialogEvent)="openUpdateShelfDialog($event)"
+  (navigateDeleteDialogEvent)="setSelectedShelf($event.id)"
+  (paginationEvent)="onPageChange($event)"
+></app-table>
+
+<!-- DELETE MODAL -->
+<app-delete-modal
+  [description]="deleteDialogDescription"
+  (deleteEvent)="deleteShelf(id)"
+></app-delete-modal>

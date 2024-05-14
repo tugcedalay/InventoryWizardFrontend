@@ -1,0 +1,23 @@
+<app-navbar
+  (refreshEvent)="ngOnInit()"
+  (generatePdfEvent)="generatePDF()"
+  (navigateCreateDialogEvent)="openCreateCategoryDialog()"
+  (onSearchInputChangeEvent)="onSearchInputChange($event)"
+></app-navbar>
+
+<!-- TABLE MODAL -->
+<app-table
+  [totalPages]="totalPages"
+  [tableTitle]="tableTitle"
+  [tableData]="tableData"
+  [columns]="columns"
+  (navigateUpdateDialogEvent)="openUpdateCategoryDialog($event)"
+  (navigateDeleteDialogEvent)="setSelectedCategory($event.id)"
+  (paginationEvent)="onPageChange($event)"
+></app-table>
+
+<!-- DELETE MODAL -->
+<app-delete-modal
+  [description]="deleteDialogDescription"
+  (deleteEvent)="deleteCategory(id)"
+></app-delete-modal>

@@ -1,0 +1,10 @@
+<app-navbar
+  (refreshEvent)="ngOnInit()"
+  (generatePdfEvent)="generatePDF()"
+></app-navbar>
+
+<app-report-table
+  [tableTitle]="tableTitle"
+  [tableData]="tableData"
+  [columns]="columns"
+></app-report-table>

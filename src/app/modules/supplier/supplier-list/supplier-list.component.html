@@ -1,0 +1,23 @@
+<app-navbar
+  (refreshEvent)="ngOnInit()"
+  (navigateCreateDialogEvent)="openCreateSupplierDialog()"
+  (generatePdfEvent)="generatePDF()"
+  (onSearchInputChangeEvent)="onSearchInputChange($event)"
+></app-navbar>
+
+<!-- TABLE MODAL -->
+<app-table
+  [totalPages]="totalPages"
+  [tableTitle]="tableTitle"
+  [tableData]="tableData"
+  [columns]="columns"
+  (navigateUpdateDialogEvent)="openUpdateSupplierDialog($event)"
+  (navigateDeleteDialogEvent)="setSelectedSupplier($event.id)"
+  (paginationEvent)="onPageChange($event)"
+></app-table>
+
+<!-- DELETE MODAL -->
+<app-delete-modal
+  [description]="deleteDialogDescription"
+  (deleteEvent)="deleteSupplier(id)"
+></app-delete-modal>
